@@ -44,49 +44,14 @@
       <!--Ошибки required ruText justOneWord numeric maxLength-->
       <customValidators v-bind:mainObject="$v.ArrAdress[index].idNameElement[ takeIdNameElementKey(adr) ]"/>
 
-      <!--div v-for="(reaction, indexReaction) in arrReactionsToIncorrectInput" :key="indexReaction" >
-        <small
-            class="text_invalid"
-            v-if="($v.ArrAdress[index].idNameElement[ takeIdNameElementKey(adr) ][reaction.typeValidation] !== undefined) &&
-                  (!$v.ArrAdress[index].idNameElement[ takeIdNameElementKey(adr) ][reaction.typeValidation]) &&
-                  (indexReaction === 0)"
-        >
-          {{ reaction.textValidation }}
-        </small>
-        <small
-            class="text_invalid"
-            v-else-if="($v.ArrAdress[index].idNameElement[ takeIdNameElementKey(adr) ][reaction.typeValidation] !== undefined) &&
-                       (!$v.ArrAdress[index].idNameElement[ takeIdNameElementKey(adr) ][reaction.typeValidation])"
-        >
-          {{ reaction.textValidation }}
-        </small>
-      </div-->
-
     </div>
-<!--{{ testSendInfo() }}-->
-    <!--div v-if="!$v.$invalid" >
-      {{ $v.$invalid }}
-      {{ $emit('validet', $v.$invalid) }}
-      {{ proverka($v.$invalid) }}
-    </div>
-    <div v-else >
-      {{ $v.$invalid }}
-    </div>
-
-    <button v-on:click="$emit('validet', $v.$invalid )">
-      Увеличить размер текста
-    </button>
-
-    <div v-on:load.passive="$emit('validet', $v.$invalid )"></div-->
-
   </div>
 </template>
 
 <script>
-import { required, numeric /*or,/* alpha, numeric, maxLength, , minLength*/ } from 'vuelidate/lib/validators'
-import { ruenText, ruText /*, enText, /*justOneWord*/} from "@/components/customValidators";
+import { required, numeric } from 'vuelidate/lib/validators'
+import { ruenText, ruText } from "@/components/customValidators";
 import customValidators from "@/components/customValidators";
-// import ruText from "@/components/ruText";
 
 let idAdrInfo = 0;
 let bufidAdrInfo = 0;
@@ -123,12 +88,7 @@ export default {
     takeIdNameElementKey(obj) {
       return Object.keys(obj.idNameElement)[0];
     },
-    proverka(znach) {
-      if (znach) {
-        return () => this.$emit('validet')
-      }
-    },
-    /* Для работы функции нужно объявить lastValueSent и v-on:input="sendMainComponent(!$v.$invalid)" (пример) */
+    /* Для работы функции нужно объявить lastValueSent и v-on:input="sendMainComponent(!$v.$invalid, <текущий объект>)" (пример) */
     sendMainComponent(valid, obj) {
       console.log( obj );
 
@@ -138,9 +98,7 @@ export default {
         return this.$emit( 'validet', {'1': valid, 'objct': obj} )
       }
     },
-    testSendInfo(){
-      console.log( this.ArrAdress );
-    }
+
   }
 }
 </script>

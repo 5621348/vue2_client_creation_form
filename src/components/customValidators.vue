@@ -43,10 +43,6 @@ export const ruenText = (value) => value.search(/[^А-яёA-z'\s]+/) === -1 ;
 
 export const justOneWord = (value) => value.search(/([А-яёA-z]+[-+А-яёA-z]+)\s+([А-яёA-z]+)/) === -1 ;
 
-// export const numbersWithSigns = (value) => value.search( /[^0-9]+|[^0-9]+[^(К)]{1}[^0-9]+/ ) === -1 ;
-// export const startRuPhone = (value) => value.search(/(?:\+7)/) === -1 ;
-
-
 export default {
   name: "customValidators",
   props: {
@@ -73,7 +69,3 @@ export default {
 
 }
 </script>
-
-<!--<style scoped>-->
-
-<!--</style>-->

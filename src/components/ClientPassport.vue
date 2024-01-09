@@ -43,41 +43,15 @@
 
       <!--Ошибки required ruText justOneWord numeric maxLength-->
       <customValidators v-bind:mainObject="$v.ArrPassport[index].idNameElement[ takeIdNameElementKey(pasp) ]"/>
+
     </div>
-
-    <!--div v-for="pasp in ArrPassport" :key="pasp.id">
-      <label v-bind:for="pasp.idNameElement" >{{ `${pasp.label}${(pasp.mustBeFilledIn) ? '*' : '' } : ` }}</label>
-      <input
-          v-if="pasp.htmlType === 'input'"
-          v-bind:id="pasp.idNameElement"
-          v-bind:type="pasp.type"
-          v-bind:value="(pasp.type === 'checkbox' && pasp.value === '') ? pasp.value=false : ''"
-          v-model="pasp.value"
-      >
-      <select
-          v-else-if="pasp.htmlType === 'select'"
-          v-bind:multiple="(pasp.type === 'multiple')"
-          v-model="pasp.setValue"
-      >
-        <option
-            v-for="opon in pasp.value" :key="opon"
-            v-bind:value="opon"
-        >
-          {{ opon }}
-        </option>
-      </select>
-      <small v-if="pasp.htmlType ==='input'"> {{ pasp.value }} </small>
-      <small v-else > {{ pasp.setValue }}</small>
-      <br><small class="text_invalid" >{{ pasp.mustBeFilledIn }}</small>
-    </div-->
-
   </div>
 </template>
 
 <script>
 import customValidators from "@/components/customValidators";
-import {required, numeric} from "vuelidate/lib/validators";
-import {ruenText} from "@/components/customValidators";
+import { required, numeric } from "vuelidate/lib/validators";
+import { ruenText } from "@/components/customValidators";
 
 let idPaspInfo = 0;
 let bufidPaspInfo = 0;
@@ -113,7 +87,7 @@ export default {
     takeIdNameElementKey(obj) {
       return Object.keys(obj.idNameElement)[0];
     },
-    /* Для работы функции нужно объявить lastValueSent и v-on:input="sendMainComponent(!$v.$invalid)" (пример) */
+    /* Для работы функции нужно объявить lastValueSent и v-on:input="sendMainComponent(!$v.$invalid, <текущий объект>)" (пример) */
     sendMainComponent(valid, obj) {
       if ( this.lastValueSent !== valid ) {
         console.log(`ClientPassport - sendMainComponent: ${valid}`);
