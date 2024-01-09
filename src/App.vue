@@ -2,12 +2,10 @@
   <div id="app">
 
     <div class="utility-application">
-  <!--    <img alt="Vue logo" src="./assets/logo.png">-->
-      <!--HelloWorld msg="Welcome to Your Vue.js App"/-->
       <form class="Client_Creation_Form">
-
         <div class="ClientInformation">
           <table class="main-table"  >
+
             <caption>
               <span class="Form_Content" ><h2>Создание нового клиента</h2></span>
             </caption>
@@ -17,13 +15,13 @@
                 <BasicInformation v-on:validet="formValidet($event)" />
               </td>
             </tr>
-  <!--            <p>______________</p><br>-->
+
             <tr>
               <td>
                 <ClientAdress v-on:validet="formValidet($event)" />
               </td>
             </tr>
-  <!--            <p>______________</p><br>-->
+
             <tr>
               <td>
                 <ClientPassport v-on:validet="formValidet($event)" />
@@ -44,28 +42,20 @@
             Создать
           </button>
         </div>
-
       </form>
-
-      <!--button v-on:click="creatingAnObjectToSend()" >
-        Создать  2
-      </button-->
     </div>
 
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import BasicInformation from "@/components/BasicInformation";
 import ClientAdress from "@/components/ClientAdress";
 import ClientPassport from "@/components/ClientPassport";
 
-
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
     BasicInformation,
     ClientAdress,
     ClientPassport
@@ -81,15 +71,10 @@ export default {
     }
   },
   methods: {
-    widthScreen() {
-      return window.innerWidth;
-    },
-    formValidet(childObj){
-      console.log(childObj);
+    formValidet( childObj ){
       let bufObj = Object.keys(childObj)[0];
       this.valideteComponents[ bufObj ] = childObj[ bufObj ];
-      //console.log(`bufObj: ${bufObj}`);
-      console.log( this.valideteComponents );
+
       if ( this.valideteComponents.every( (element) => element === true ) ){
         console.log('%ctestValidet: ok ', 'color: Green;');
         this.validateButtonValue = false;
@@ -99,15 +84,12 @@ export default {
       }
 
       this.objectsForSaveValueForm[ bufObj ] = childObj.objct;
-      console.log( this.objectsForSaveValueForm[ bufObj ] );
     },
     creatingAnObjectToSend() {
       for ( let i = 0; i < this.objectsForSaveValueForm.length; i++ ) {
-        console.log(  this.objectsForSaveValueForm );
         for ( let elem in this.objectsForSaveValueForm[i] ) {
           const buff = this.objectsForSaveValueForm[i][elem];
-          this.objectsForBackend[ this.takeIdNameElementKey( buff ) ] = this.objectsForSaveValueForm[i][elem].idNameElement[ this.takeIdNameElementKey( buff ) ]
-          // console.log( this.objectsForBackend );
+          this.objectsForBackend[ this.takeIdNameElementKey( buff ) ] = this.objectsForSaveValueForm[i][elem].idNameElement[ this.takeIdNameElementKey( buff ) ];
         }
       }
       console.log( JSON.stringify(this.objectsForBackend) );  //отправляем на бэк
@@ -119,7 +101,6 @@ export default {
   }
 }
 
-
 </script>
 
 <style>
@@ -127,7 +108,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*text-align: center;*/
   color: #9b9fff;
   margin: 2.5% 8%;
 }
@@ -149,8 +129,6 @@ body {
 .main-table {
   margin: auto;
   width: 33%;
-
-  /*border: groove;*/
 }
 
 .main-table * {
@@ -161,7 +139,6 @@ body {
 
 .lable_elemet {
   float:left;
-  /*color: #00FF00;*/
 }
 
 input, select {
@@ -178,7 +155,6 @@ input, select {
 .submit-button {
   background-color: v-bind( (validateButtonValue) ? 'black' : '#00FF00' );
   border: none;
-  /*color: white;*/
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
